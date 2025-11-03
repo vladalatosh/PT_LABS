@@ -1,608 +1,504 @@
-﻿using System.Globalization;
+﻿
+﻿using System.Text;
 
-
-Console.OutputEncoding = System.Text.Encoding.UTF8;
-
-RunApp();
-
-static void RunApp()
+namespace CS_Basics
 {
-	while (true)
-	{
-		PrintHeader("ЛАБОРАТОРНАЯ РАБОТА №3 — CS_Basics");
-		Console.WriteLine("Выберите блок задач (только чётные задачи):");
-		Console.WriteLine("1 — Переменные и операторы");
-		Console.WriteLine("2 — Условные операторы (if/else, switch)");
-		Console.WriteLine("3 — Циклы (while, do-while, for)");
-		Console.WriteLine("4 — Массивы");
-		Console.WriteLine("5 — Функции и методы");
-		Console.WriteLine("0 — Выход из программы");
-
-		int block = ReadInt("Введите номер блока: ", 0, 5);
-
-		switch (block)
-		{
-			case 0:
-				Console.WriteLine("До встречи!");
-				return;
-			case 1:
-				Block1();
-				break;
-			case 2:
-				Block2();
-				break;
-			case 3:
-				Block3();
-				break;
-			case 4:
-				Block4();
-				break;
-			case 5:
-				Block5();
-				break;
-		}
-	}
-}
-
-// ---------------------- Блок 1: Переменные и операторы ----------------------
-static void Block1()
-{
-	while (true)
-	{
-		PrintHeader("Блок 1 — Переменные и операторы (только чётные: 2, 4, 6)");
-		Console.WriteLine("2 — Индекс массы тела (ИМТ)");
-		Console.WriteLine("4 — Перевод времени (секунды -> чч:мм:сс)");
-		Console.WriteLine("6 — Цена со скидкой");
-		Console.WriteLine("0 — Вернуться в главное меню");
-
-		int choice = ReadInt("Введите номер задачи: ", 0, 6);
-		if (choice == 0) return;
-
-		switch (choice)
-		{
-			case 2:
-				Task1_2_BMI();
-				break;
-			case 4:
-				Task1_4_Time();
-				break;
-			case 6:
-				Task1_6_Discount();
-				break;
-			default:
-				Console.WriteLine("Доступны только задачи 2, 4, 6.");
-				Pause();
-				break;
-		}
-	}
-}
-
-static void Task1_2_BMI()
-{
-	PrintTask("Блок 1, задача 2: Индекс массы тела (ИМТ)");
-	double heightCm = ReadDouble("Введите рост (в сантиметрах): ", 30, 300);
-	double weightKg = ReadDouble("Введите вес (в килограммах): ", 1, 500);
-	double heightM = heightCm / 100.0;
-	double bmi = weightKg / (heightM * heightM);
-	Console.WriteLine($"ИМТ: {Math.Round(bmi, 1)}");
-	Pause();
-}
-
-static void Task1_4_Time()
-{
-	PrintTask("Блок 1, задача 4: Перевод времени (секунды -> чч:мм:сс)");
-	int seconds = ReadInt("Введите количество секунд (>= 0): ", 0);
-	int h = seconds / 3600;
-	int m = (seconds % 3600) / 60;
-	int s = seconds % 60;
-	Console.WriteLine($"Результат: {h:00}:{m:00}:{s:00}");
-	Pause();
-}
-
-static void Task1_6_Discount()
-{
-	PrintTask("Блок 1, задача 6: Цена со скидкой");
-	double price = ReadDouble("Введите цену: ", 0);
-	double discount = ReadDouble("Введите размер скидки в % (0..100): ", 0, 100);
-	double finalPrice = price * (1 - discount / 100.0);
-	Console.WriteLine($"Итоговая цена: {finalPrice:F2}");
-	Pause();
-}
-
-// ---------------------- Блок 2: Условные операторы ----------------------
-static void Block2()
-{
-	while (true)
-	{
-		PrintHeader("Блок 2 — Условные операторы (только чётные: 2, 4, 6)");
-		Console.WriteLine("2 — Тип треугольника");
-		Console.WriteLine("4 — Оценка по числу (switch)");
-		Console.WriteLine("6 — Конвертация валют (рубль -> USD/GBP/EUR)");
-		Console.WriteLine("0 — Вернуться в главное меню");
-
-		int choice = ReadInt("Введите номер задачи: ", 0, 6);
-		if (choice == 0) return;
-
-		switch (choice)
-		{
-			case 2: Task2_2_Triangle(); break;
-			case 4: Task2_4_GradeSwitch(); break;
-			case 6: Task2_6_CurrencySwitch(); break;
-			default:
-				Console.WriteLine("Доступны только задачи 2, 4, 6.");
-				Pause();
-				break;
-		}
-	}
-}
-
-static void Task2_2_Triangle()
-{
-    PrintTask("Блок 2, задача 2: Тип треугольника");
-    double a = ReadDouble("Сторона a: ", 1);
-    double b = ReadDouble("Сторона b: ", 1);
-    double c = ReadDouble("Сторона c: ", 1);
-
-    bool possible = a + b > c && a + c > b && b + c > a;
-    if (!possible)
+    class Program
     {
-        Console.WriteLine("Треугольник с такими сторонами не существует.");
-        Pause();
-        return;
-    }
-
-
-    if (a == b && b == c)
-        Console.WriteLine("Тип: равносторонний");
-    else if ((a == b) || (a == c) || (b == c))
-		Console.WriteLine("Тип: равнобедренный");
-	else
-		Console.WriteLine("Тип: разносторонний");
-
-	Pause();
-}
-
-static void Task2_4_GradeSwitch()
-{
-	PrintTask("Блок 2, задача 4: Оценка по числу (switch)");
-    int grade = ReadInt("Введите оценку (1..5): ", 1, 5);
-    string text = "Неизвестно";
-    if (grade == 1)
-    {
-        text = "Плохо";
-    }
-    else if (grade == 2)
-    {
-        text = "Неудовлетворительно";
-    }
-    else if (grade == 3)
-    {
-        text = "Удовлетворительно";
-    }
-    else if (grade == 4)
-    {
-        text = "Хорошо";
-    }
-    else if (grade == 5)
-    {
-        text = "Отлично";
-    }
-	Console.WriteLine($"Результат: {text}");
-	Pause();
-}
-
-static void Task2_6_CurrencySwitch()
-{
-	PrintTask("Блок 2, задача 6: Конвертация валют (RUB -> USD/GBP/EUR)");
-	const double USD = 0.3338;
-	const double EUR = 0.2884;
-	const double GBP = 0.2511;
-
-	double rub = ReadDouble("Введите сумму в рублях: ", 0);
-	Console.Write("Выберите валюту (USD/EUR/GBP): ");
-	string code = Console.ReadLine().ToUpperInvariant();
-    if (code != "USD" && code != "EUR" && code != "GBP")
-    {
-        Console.WriteLine("Неизвестная валюта. Допустимо: USD, EUR, GBP.");
-        Pause();
-        return;
-    }
-    double result = 0;
-    if (code == "USD")
-    {
-        result = rub * USD;
-    }
-    if (code == "EUR")
-    {
-        result = rub * EUR;
-    }
-    if (code == "GBP")
-    {
-        result = rub * GBP;
-    }
-
-	Console.WriteLine($"Результат: {result:F2} {code}");
-
-	Pause();
-}
-
-// ---------------------- Блок 3: Циклы ----------------------
-static void Block3()
-{
-	while (true)
-	{
-		PrintHeader("Блок 3 — Циклы (только чётные: 2, 4, 6)");
-		Console.WriteLine("2 — Переворот числа");
-		Console.WriteLine("4 — Максимальное нечётное число в [a, b]");
-		Console.WriteLine("6 — Арифметическая прогрессия и сумма");
-		Console.WriteLine("0 — Вернуться в главное меню");
-
-		int choice = ReadInt("Введите номер задачи: ", 0, 6);
-		if (choice == 0) return;
-
-		switch (choice)
-		{
-			case 2: Task3_2_Reverse(); break;
-			case 4: Task3_4_MaxOddInRange(); break;
-			case 6: Task3_6_AP(); break;
-			default:
-				Console.WriteLine("Доступны только задачи 2, 4, 6.");
-				Pause();
-				break;
-		}
-	}
-}
-
-static void Task3_2_Reverse()
-{
-	PrintTask("Блок 3, задача 2: Переворот числа");
-	long n = ReadLong("Введите целое число: ");
-	bool neg = n < 0;
-	long x = Math.Abs(n);
-	long rev = 0;
-	if (x == 0) rev = 0;
-	while (x > 0)
-	{
-		long d = x % 10;
-		rev = rev * 10 + d;
-		x = x / 10;
-	}
-	if (neg) rev = -rev;
-	Console.WriteLine($"Результат: {rev}");
-	Pause();
-}
-
-static void Task3_4_MaxOddInRange()
-{
-	PrintTask("Блок 3, задача 4: Максимальное нечётное число в диапазоне [a, b]");
-	long a = ReadLong("Введите a: ");
-    long b = ReadLong("Введите b: ");
-    long maxOdd = a;
-    for(long i = a; i <= b; ++i){
-        if(i % 2 != 0 && i > maxOdd){
-            maxOdd = i;
-        }
-    }
-	Console.WriteLine($"Максимальное нечётное: {maxOdd}");
-	Pause();
-}
-
-static void Task3_6_AP()
-{
-	PrintTask("Блок 3, задача 6: Арифметическая прогрессия");
-	int n = ReadInt("Введите количество членов n (>0): ", 1);
-	double a1 = ReadDouble("Введите первый член: ");
-	double d = ReadDouble("Введите шаг прогрессии: ");
-
-	double sum = 0;
-	Console.WriteLine("Члены прогрессии:");
-	for (int i = 0; i < n; i++)
-	{
-		double ai = a1 + i * d;
-		sum = sum + ai;
-		Console.Write(ai + (i < n - 1 ? ", " : "\n"));
-	}
-	Console.WriteLine($"Сумма: {sum}");
-	Pause();
-}
-
-// ---------------------- Блок 4: Массивы ----------------------
-static void Block4()
-{
-	while (true)
-	{
-		PrintHeader("Блок 4 — Массивы (только чётные: 2, 4, 6)");
-		Console.WriteLine("2 — Второй по величине элемент и его индекс");
-		Console.WriteLine("4 — Чётные элементы по столбцам (в 2D массиве)");
-		Console.WriteLine("6 — Максимумы на диагоналях матрицы и их сумма");
-		Console.WriteLine("0 — Вернуться в главное меню");
-
-		int choice = ReadInt("Введите номер задачи: ", 0, 6);
-		if (choice == 0) return;
-
-		switch (choice)
-		{
-			case 2: Task4_2_SecondLargest(); break;
-			case 4: Task4_4_EvenPerColumn(); break;
-			case 6: Task4_6_DiagonalsMaxAndSum(); break;
-			default:
-				Console.WriteLine("Доступны только задачи 2, 4, 6.");
-				Pause();
-				break;
-		}
-	}
-}
-
-static void Task4_2_SecondLargest()
-{
-	PrintTask("Блок 4, задача 2: Второй по величине элемент");
-	int n = ReadInt("Введите размер массива (>=2): ", 2);
-	var rnd = new Random();
-	int[] arr = new int[n];
-	for (int i = 0; i < n; i++) arr[i] = rnd.Next(1, 101);
-
-	Console.WriteLine("Массив: " + string.Join(", ", arr));
-
-	// Поиск второго по величине (отличного от максимума)
-	int max = int.MinValue, second = int.MinValue;
-	int maxIdx = -1, secondIdx = -1;
-	for (int i = 0; i < n; i++)
-	{
-		int v = arr[i];
-		if (v > max)
-		{
-			second = max; 
-			secondIdx = maxIdx;
-			
-			max = v; 
-			maxIdx = i;
-		}
-		else if (v < max && v > second)
-		{
-			second = v; secondIdx = i;
-		}
-	}
-
-	if (secondIdx == -1)
-		Console.WriteLine("В массиве нет второго по величине отличного значения (все элементы равны или только один уникальный максимум).");
-	else
-		Console.WriteLine($"Второй по величине элемент: {second}, индекс: {secondIdx}");
-
-	Pause();
-}
-
-static void Task4_4_EvenPerColumn()
-{
-	PrintTask("Блок 4, задача 4: Чётные элементы по столбцам");
-	int rows = ReadInt("Введите число строк (>0): ", 1);
-	int cols = ReadInt("Введите число столбцов (>0): ", 1);
-	var rnd = new Random();
-	int[,] m = new int[rows, cols];
-	for (int i = 0; i < rows; i++)
-		for (int j = 0; j < cols; j++)
-			m[i, j] = rnd.Next(1, 101);
-
-	Console.WriteLine("Матрица:");
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-			Console.Write(m[i, j].ToString().PadLeft(4));
-		Console.WriteLine();
-	}
-
-	int[] evenCounts = new int[cols];
-	for (int j = 0; j < cols; j++)
-	{
-		int cnt = 0;
-		for (int i = 0; i < rows; i++) if (m[i, j] % 2 == 0) cnt++;
-		evenCounts[j] = cnt;
-	}
-	int maxCol = 0;
-	for (int j = 1; j < cols; j++) if (evenCounts[j] > evenCounts[maxCol]) maxCol = j;
-
-	Console.WriteLine("Кол-во чётных по столбцам: " + string.Join(", ", evenCounts));
-	Console.WriteLine($"Столбец с максимальным числом чётных: {maxCol} (считая с 0), значение = {evenCounts[maxCol]}");
-	Pause();
-}
-
-static void Task4_6_DiagonalsMaxAndSum()
-{
-	PrintTask("Блок 4, задача 6: Максимумы на диагоналях");
-	int n = ReadInt("Введите размер квадратной матрицы n (>0): ", 1);
-	var rnd = new Random();
-	int[,] m = new int[n, n];
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < n; j++)
-			m[i, j] = rnd.Next(1, 101);
-
-	Console.WriteLine("Матрица:");
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < n; j++)
-			Console.Write(m[i, j].ToString().PadLeft(4));
-		Console.WriteLine();
-	}
-
-	int maxMain = int.MinValue, maxAnti = int.MinValue;
-	for (int i = 0; i < n; i++)
-	{
-		if (m[i, i] > maxMain) maxMain = m[i, i];
-		int j = n - 1 - i;
-		if (m[i, j] > maxAnti) maxAnti = m[i, j];
-	}
-	Console.WriteLine($"Max на главной диагонали: {maxMain}");
-	Console.WriteLine($"Max на побочной диагонали: {maxAnti}");
-	Console.WriteLine($"Сумма максимумов: {maxMain + maxAnti}");
-	Pause();
-}
-
-// ---------------------- Блок 5: Функции ----------------------
-static void Block5()
-{
-	while (true)
-	{
-		PrintHeader("Блок 5 — Функции (чётные: 2, 4, 6, 8)");
-		Console.WriteLine("2 — Генерация массива GenerateArray");
-		Console.WriteLine("4 — Рекурсивная сумма цифр DigitSum");
-		Console.WriteLine("6 — Разделение числа Split");
-		Console.WriteLine("8 — Длины строк GetLengths");
-		Console.WriteLine("0 — Вернуться в главное меню");
-
-		int choice = ReadInt("Введите номер задачи: ", 0, 8);
-		if (choice == 0) return;
-
-		switch (choice)
-		{
-			case 2: Demo_Block5_2_GenerateArray(); break;
-			case 4: Demo_Block5_4_DigitSum(); break;
-			case 6: Demo_Block5_6_Split(); break;
-			case 8: Demo_Block5_8_GetLengths(); break;
-			default:
-				Console.WriteLine("Доступны только задачи 2, 4, 6, 8.");
-				Pause();
-				break;
-		}
-	}
-}
-
-// Реализации функций Блока 5
-static int[] GenerateArray(int count, int min, int max)
-{
-	if (count < 0) return [];
-	if (min > max) (min, max) = (max, min);
-	var rnd = new Random();
-	int[] arr = new int[count];
-	for (int i = 0; i < count; i++) arr[i] = rnd.Next(min, max + 1);
-	return arr;
-}
-
-static int DigitSum(int number)
-{
-	number = Math.Abs(number);
-	if (number < 10) return number;
-	return number % 10 + DigitSum(number / 10);
-}
-
-static void Split(double number, out int whole, out double fraction)
-{
-	whole = (int)Math.Truncate(number);
-	fraction = Math.Abs(number - whole);
-}
-
-static int[] GetLengths(params string[] strings)
-{
-	int[] res = new int[strings.Length];
-	for (int i = 0; i < strings.Length; i++) res[i] = strings[i]?.Length ?? 0;
-	return res;
-}
-
-// Демо-вызовы для задач блока 5 (ввод/вывод)
-static void Demo_Block5_2_GenerateArray()
-{
-	PrintTask("Блок 5, задача 2: GenerateArray");
-	int count = ReadInt("Введите размер массива (>=0): ", 0);
-	int min = ReadInt("Введите минимум: ");
-	int max = ReadInt("Введите максимум: ");
-	var arr = GenerateArray(count, min, max);
-	Console.WriteLine("Сгенерированный массив: " + string.Join(", ", arr));
-	Pause();
-}
-
-static void Demo_Block5_4_DigitSum()
-{
-	PrintTask("Блок 5, задача 4: DigitSum");
-	int n = ReadInt("Введите целое число: ");
-	Console.WriteLine($"Сумма цифр: {DigitSum(n)}");
-	Pause();
-}
-
-static void Demo_Block5_6_Split()
-{
-	PrintTask("Блок 5, задача 6: Split");
-	double x = ReadDouble("Введите число: ");
-	Split(x, out int whole, out double frac);
-	Console.WriteLine($"Целая часть: {whole}, дробная часть (модуль): {frac}");
-	Pause();
-}
-
-static void Demo_Block5_8_GetLengths()
-{
-	PrintTask("Блок 5, задача 8: GetLengths");
-	Console.WriteLine("Введите строки через запятую: ");
-	string line = Console.ReadLine() ?? string.Empty;
-	string[] items = line.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-	var lengths = GetLengths(items);
-	Console.WriteLine("Длины: " + string.Join(", ", lengths));
-	Pause();
-}
-
-// ---------------------- Утилиты ввода/вывода ----------------------
-static int ReadInt(string prompt, int? min = null, int? max = null)
-{
-	while (true)
-	{
-		Console.Write(prompt);
-		string? s = Console.ReadLine();
-		if (int.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out int v))
-		{
-			if (min.HasValue && v < min.Value) { Console.WriteLine($"Число должно быть >= {min.Value}."); continue; }
-			if (max.HasValue && v > max.Value) { Console.WriteLine($"Число должно быть <= {max.Value}."); continue; }
-			return v;
-		}
-		Console.WriteLine("Некорректный ввод, попробуйте ещё раз.");
-	}
-}
-
-static long ReadLong(string prompt, long? min = null, long? max = null)
-{
-	while (true)
-	{
-		Console.Write(prompt);
-		string? s = Console.ReadLine();
-		if (long.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out long v))
-		{
-			if (min.HasValue && v < min.Value) { Console.WriteLine($"Число должно быть >= {min.Value}."); continue; }
-			if (max.HasValue && v > max.Value) { Console.WriteLine($"Число должно быть <= {max.Value}."); continue; }
-			return v;
-		}
-		Console.WriteLine("Некорректный ввод, попробуйте ещё раз.");
-	}
-}
-
-static double ReadDouble(string prompt, double? min = null, double? max = null)
-{
-	while (true)
-	{
-		Console.Write(prompt);
-		string? s = Console.ReadLine()?.Replace(',', '.'); // допускаем запятую
-        if (double.TryParse(s, out double v))
+        static void Main(string[] args)
         {
-            if (min.HasValue && v < min.Value - 1e-12) { Console.WriteLine($"Число должно быть >= {min.Value}."); continue; }
-            if (max.HasValue && v > max.Value + 1e-12) { Console.WriteLine($"Число должно быть <= {max.Value}."); continue; }
-            return v;
+            Console.OutputEncoding = UTF8Encoding.UTF8;
+            bool exit = false;
+            while (!exit)
+            {
+                Console.Clear();
+                Console.WriteLine("========================================");
+                Console.WriteLine("  Лабораторная работа №3 - CS_Basics");
+                Console.WriteLine("  Основны языка програмирования C#");
+                Console.WriteLine("========================================");
+                Console.WriteLine("Блок 1. Переменные и операторы.");
+                Console.WriteLine("Блок 2. Условные операторы.");
+                Console.WriteLine("Блок 3. Циклы.");
+                Console.WriteLine("Блок 4. Массивы.");
+                Console.WriteLine("Блок 5. Функции.");
+                Console.Write("\nВыбери блок: ");
+
+                string input = Console.ReadLine() ?? "";
+
+                if (input == "1")
+                {
+                    Block1();
+                }
+                else if (input == "2")
+                {
+                    Block2();
+                }
+                else if (input == "3")
+                {
+                    Block3();
+                }
+                else if (input == "4")
+                {
+                    Block4();
+                }
+                else if (input == "5")
+                {
+                    Block5();
+                }
+                else if (input == "9")
+                {
+                    exit = true;
+                    Console.WriteLine("Закрывается...");
+                }
+                else
+                {
+                    Console.WriteLine("Неправильная опция. Ввидте корректный вариант.");
+                    Console.ReadKey();
+                }
+            }
+
         }
-		Console.WriteLine("Некорректный ввод, попробуйте ещё раз.");
-	}
-}
+        static void Block1()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.Clear();
+                Console.WriteLine("========================================");
+                Console.WriteLine("Блок 1. Переменные и операторы.");
+                Console.WriteLine("========================================");
+                Console.WriteLine("2. ИМТ");
+                Console.WriteLine("4. Перевод времени");
+                Console.WriteLine("6. Цена со скидкой");
+                Console.WriteLine("9. Вернутся в меню");
+                Console.Write("\nВыбери задачу: ");
 
-static void PrintHeader(string title)
-{
-	Console.WriteLine();
-	Console.WriteLine(new string('=', Math.Max(8, title.Length + 4)));
-	Console.WriteLine("  " + title);
-	Console.WriteLine(new string('=', Math.Max(8, title.Length + 4)));
-}
+                string choice1 = Console.ReadLine();
+                if (choice1 == "2")
+                {
+                    Console.Write("Введите вес в кг: ");
+                    double.TryParse(Console.ReadLine(), out double weight);
+                    Console.Write("Введите роств cm: ");
+                    double.TryParse(Console.ReadLine(), out double heightCm);
+                    if ((heightCm > 0) && (weight > 0))
+                    {
+                        double heightM = heightCm / 100.0;
+                        double bmi = weight / (heightM * heightM);
+                        Console.WriteLine($"ИМТ: {bmi:F1}");
+                    }
+                    else { Console.WriteLine("Знчение веса или роста должно быть больше нуля. Введите ещё раз:"); }
+                    Pause();
+                }
+                else if (choice1 == "4")
+                {
+                    Console.Write("Перевод времени: ");
+                    if (int.TryParse(Console.ReadLine(), out int totalSeconds))
+                    {
+                        int hours = totalSeconds / 3600;
+                        int minutes = (totalSeconds % 3600) / 60;
+                        int seconds = totalSeconds % 60;
+                        Console.WriteLine($"Результат: {hours:D2}:{minutes:D2}:{seconds:D2}");
+                    }
+                    else { Console.WriteLine("Неправильный ввод."); }
+                    Pause();
+                }
+                else if (choice1 == "6")
+                {
+                    Console.Write("Введите цену: ");
+                    double.TryParse(Console.ReadLine(), out double price);
+                    Console.Write("Введите процент скдики (%): ");
+                    double.TryParse(Console.ReadLine(), out double discount);
+                    double finalPrice = price - (price * discount / 100);
+                    Console.WriteLine($"Итоговая цена: {finalPrice:F2}");
+                    Pause();
+                }
+                else if (choice1 == "9")
+                {
+                    back = true;
+                }
+                else
+                {
+                    Console.WriteLine("Неправильный ввод.");
+                    Pause();
+                }
+            }
 
-static void PrintTask(string title)
-{
-	Console.WriteLine();
-	Console.WriteLine(new string('-', Math.Max(8, title.Length + 4)));
-	Console.WriteLine("  " + title);
-	Console.WriteLine(new string('-', Math.Max(8, title.Length + 4)));
-}
+        }
+        static void Block2()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.Clear();
+                Console.WriteLine("========================================");
+                Console.WriteLine("Блок 2. Условные операторы.");
+                Console.WriteLine("========================================");
+                Console.WriteLine("2. Тип треугольника");
+                Console.WriteLine("4. Оценка по числу");
+                Console.WriteLine("6. Конвертация валют");
+                Console.WriteLine("9. Вернутся в меню");
+                Console.Write("\nВыбери задачу: ");
 
-static void Pause()
-{
-	Console.WriteLine("\nНажмите любую клавишу, чтобы продолжить...");
-	Console.ReadKey(true);
+                string choice2 = Console.ReadLine();
+                if (choice2 == "2")
+                {
+                    Console.Write("Сторона A: ");
+                    double.TryParse(Console.ReadLine(), out double a);
+                    Console.Write("Сторона B: ");
+                    double.TryParse(Console.ReadLine(), out double b);
+                    Console.Write("Сторона C: ");
+                    double.TryParse(Console.ReadLine(), out double c);
+
+                    if (a + b > c && a + c > b && b + c > a)
+                    {
+                        if (a == b && b == c) Console.WriteLine("Равносторонний.");
+                        else if (a == b || a == c || b == c) Console.WriteLine("Равнобедренный");
+                        else Console.WriteLine("Разносторонний");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Стороны не создают треугольник");
+                    }
+                    Pause();
+                }
+                else if (choice2 == "4")
+                {
+                    Console.Write("Введите оценку (1-5): ");
+                    int.TryParse(Console.ReadLine(), out int grade);
+                    if (grade == 1) Console.WriteLine("Плохо");
+                    else if (grade == 2) Console.WriteLine("Неудовлетворительно");
+                    else if (grade == 3) Console.WriteLine("Удовлетворительно");
+                    else if (grade == 4) Console.WriteLine("Хорошо");
+                    else if (grade == 5) Console.WriteLine("Отлично");
+                    else Console.WriteLine("Неправильный ввод.");
+                    Pause();
+                }
+                else if (choice2 == "6")
+                {
+                    Console.Write("Введите сумму в Рублях: ");
+                    double.TryParse(Console.ReadLine(), out double amount);
+                    Console.Write("Выберите валюту (1:USD, 2:EUR, 3:GBP): ");
+                    string currency = Console.ReadLine();
+                    if (currency == "1") Console.WriteLine($"{amount * 0.011:F2} USD");
+                    else if (currency == "2") Console.WriteLine($"{amount * 0.010:F2} EUR");
+                    else if (currency == "3") Console.WriteLine($"{amount * 0.0087:F2} GBP");
+                    else Console.WriteLine("Неправильный ввод.");
+                    Pause();
+                }
+                else if (choice2 == "9")
+                {
+                    back = true;
+                }
+                else
+                {
+                    Console.WriteLine("Неправильный ввод.");
+                    Pause();
+                }
+            }
+        }
+        static void Block3()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.Clear();
+                Console.WriteLine("========================================");
+                Console.WriteLine("Блок 3. Циклы.");
+                Console.WriteLine("========================================");
+                Console.WriteLine("2. Переворот числа");
+                Console.WriteLine("4. Максимальное нечетное");
+                Console.WriteLine("6. Арифметическая прогрессия ");
+                Console.WriteLine("9. Вернутся в меню");
+                Console.Write("\nВыбери задачу: ");
+
+                string choice3 = Console.ReadLine();
+                if (choice3 == "2")
+                {
+                    Console.Write("Введите целое: ");
+                    int.TryParse(Console.ReadLine(), out int numToReverse);
+                    int reversed = 0;
+                    int inputCopy = numToReverse;
+                    while (inputCopy != 0)
+                    {
+                        reversed = reversed * 10 + inputCopy % 10;
+                        inputCopy /= 10;
+                    }
+                    Console.WriteLine($"Перевернутое число: {reversed}");
+                    Pause();
+                }
+                else if (choice3 == "4")
+                {
+                    Console.Write("Начало (a): ");
+                    int.TryParse(Console.ReadLine(), out int start);
+                    Console.Write("Конец (b): ");
+                    int.TryParse(Console.ReadLine(), out int end);
+                    bool found = false;
+                    for (int i = end; i >= start; i--)
+                    {
+                        if (i % 2 != 0)
+                        {
+                            Console.WriteLine($"Максимальное нечетное число: {i}");
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) Console.WriteLine("Не найденно нечетных.");
+                    Pause();
+                }
+                else if (choice3 == "6")
+                {
+                    Console.Write("Количество членов ряда (n): ");
+                    int.TryParse(Console.ReadLine(), out int terms);
+                    Console.Write("Первый член ряда (a1): ");
+                    double.TryParse(Console.ReadLine(), out double firstTerm);
+                    Console.Write("Разница ряда (d): ");
+                    double.TryParse(Console.ReadLine(), out double diff);
+
+                    double currentTerm = firstTerm;
+                    double progressionSum = 0;
+                    Console.Write("Ряд: ");
+                    for (int i = 0; i < terms; i++)
+                    {
+                        Console.Write(currentTerm + " ");
+                        progressionSum += currentTerm;
+                        currentTerm += diff;
+                    }
+                    Console.WriteLine($"\nСумма: {progressionSum}");
+                    Pause();
+                }
+                else if (choice3 == "9")
+                {
+                    back = true;
+                }
+                else
+                {
+                    Console.WriteLine("Неправильный ввод.");
+                    Pause();
+                }
+            }
+        }
+        static void Block4()
+        {
+            bool back = false;
+            Random rand = new Random();
+            while (!back)
+            {
+                Console.Clear();
+                Console.WriteLine("========================================");
+                Console.WriteLine("Блок 4. Массивы.");
+                Console.WriteLine("========================================");
+                Console.WriteLine("2. Второй по велечине элемент");
+                Console.WriteLine("4. Четные элементы в столбцах");
+                Console.WriteLine("6. Диагонали матрица");
+                Console.WriteLine("9. Вернутся в меню");
+                Console.Write("\nВыбери задачу: ");
+                string choice4 = Console.ReadLine();
+                if (choice4 == "2")
+                {
+                    Console.Write("Введите размер массива: ");
+                    if (int.TryParse(Console.ReadLine(), out int size) && size >= 2)
+                    {
+                        int[] arr = new int[size];
+                        for (int i = 0; i < size; i++) arr[i] = rand.Next(1, 101);
+                        Console.WriteLine("Массив: " + string.Join(", ", arr));
+
+                        int largest = int.MinValue;
+                        int secondLargest = int.MinValue;
+                        foreach (int num in arr)
+                        {
+                            if (num > largest)
+                            {
+                                secondLargest = largest;
+                                largest = num;
+                            }
+                            else if (num > secondLargest && num != largest)
+                            {
+                                secondLargest = num;
+                            }
+                        }
+                        Console.WriteLine($"Второй по велечине элемент: {secondLargest}");
+                    }
+                    else { Console.WriteLine("Размер больше двух!. "); }
+                    Pause();
+                }
+                else if (choice4 == "4")
+                {
+                    Console.Write("Количество рядов: ");
+                    int.TryParse(Console.ReadLine(), out int rowsEven);
+                    Console.Write("Количество столбцов: ");
+                    int.TryParse(Console.ReadLine(), out int colsEven);
+                    if (rowsEven > 0 && colsEven > 0)
+                    {
+                        int[,] matrix = new int[rowsEven, colsEven];
+                        Console.WriteLine("\nМатрица:");
+                        for (int i = 0; i < rowsEven; i++)
+                        {
+                            for (int j = 0; j < colsEven; j++)
+                            {
+                                matrix[i, j] = rand.Next(1, 101);
+                                Console.Write(matrix[i, j] + "\t");
+                            }
+                            Console.WriteLine();
+                        }
+
+                        int[] evenCounts = new int[colsEven];
+                        for (int j = 0; j < colsEven; j++)
+                        {
+                            for (int i = 0; i < rowsEven; i++)
+                            {
+                                if (matrix[i, j] % 2 == 0)
+                                {
+                                    evenCounts[j]++;
+                                }
+                            }
+                        }
+                        Console.WriteLine("\nЧетные в столбцах: " + string.Join(", ", evenCounts));
+                    }
+                    Pause();
+                }
+                else if (choice4 == "6")
+                {
+                    Console.Write("Размер матрицы (n x n): ");
+                    if (int.TryParse(Console.ReadLine(), out int n) && n > 0)
+                    {
+                        int[,] matrix = new int[n, n];
+                        Console.WriteLine("\nМатрица:");
+                        for (int i = 0; i < n; i++)
+                        {
+                            for (int j = 0; j < n; j++)
+                            {
+                                matrix[i, j] = rand.Next(1, 101);
+                                Console.Write(matrix[i, j] + "\t");
+                            }
+                            Console.WriteLine();
+                        }
+
+                        int maxMain = int.MinValue;
+                        int maxSecondary = int.MinValue;
+                        for (int i = 0; i < n; i++)
+                        {
+                            if (matrix[i, i] > maxMain) maxMain = matrix[i, i];
+                            if (matrix[i, n - 1 - i] > maxSecondary) maxSecondary = matrix[i, n - 1 - i];
+                        }
+                        Console.WriteLine($"\nМаксимальный на главной диагонали: {maxMain}");
+                        Console.WriteLine($"Максимум на второй диагонали: {maxSecondary}");
+                        Console.WriteLine($"Сумма: {maxMain + maxSecondary}");
+                    }
+                    Pause();
+                }
+                else if (choice4 == "9")
+                {
+                    back = true;
+                }
+                else
+                {
+                    Console.WriteLine("Неправильный ввод.");
+                    Pause();
+                }
+            }
+        }
+        static void Block5()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.Clear();
+                Console.WriteLine("========================================");
+                Console.WriteLine("Блок 5. Функции.");
+                Console.WriteLine("========================================");
+                Console.WriteLine("2. Генерация ");
+                Console.WriteLine("4. Сумма цифр числа");
+                Console.WriteLine("6. Разделение числа");
+                Console.WriteLine("8. Длинны строк");
+                Console.WriteLine("9. Вернутся в меню");
+                Console.Write("\nВыбери задачу: ");
+
+                string choice5 = Console.ReadLine();
+                if (choice5 == "2")
+                {
+                    int[] randomArray = GenerateArray(10, 1, 100);
+                    Console.WriteLine("Массив: " + string.Join(", ", randomArray));
+                    Pause();
+                }
+                else if (choice5 == "4")
+                {
+                    Console.Write("Число для суммы цифр: ");
+                    int.TryParse(Console.ReadLine(), out int numToSum);
+                    Console.WriteLine($"Сумма: {DigitSum(numToSum)}");
+                    Pause();
+                }
+                else if (choice5 == "6")
+                {
+                    Split(123.456, out int whole, out double frac);
+                    Console.WriteLine($"Число 123.456 -> Целая часть: {whole}, Дробная: {frac:F3}");
+                    Pause();
+                }
+                else if (choice5 == "8")
+                {
+                    int[] lengths = GetLengths("Hello", "World", "from", "C#");
+                    Console.WriteLine("Длинна строк: " + string.Join(", ", lengths));
+                    Pause();
+                }
+                else if (choice5 == "9")
+                {
+                    back = true;
+                }
+                else
+                {
+                    Console.WriteLine("Неправильный ввод.");
+                    Pause();
+                }
+            }
+        }
+        // --- Helpers for Block 5 ---
+        static long Factorial(int n)
+        {
+            if (n < 0) return 0;
+            return n == 0 ? 1 : n * Factorial(n - 1);
+        }
+
+        static int[] GenerateArray(int count, int min, int max)
+        {
+            Random rand = new Random();
+            int[] arr = new int[count];
+            for (int i = 0; i < count; i++) arr[i] = rand.Next(min, max + 1);
+            return arr;
+        }
+
+        static int SumRecursive(int[] array, int index)
+        {
+            if (index >= array.Length) return 0;
+            return array[index] + SumRecursive(array, index + 1);
+        }
+
+        static int DigitSum(int number)
+        {
+            number = Math.Abs(number);
+            return number == 0 ? 0 : number % 10 + DigitSum(number / 10);
+        }
+
+        static void Split(double number, out int whole, out double fraction)
+        {
+            whole = (int)number;
+            fraction = number - whole;
+        }
+
+        static int[] GetLengths(params string[] strings)
+        {
+            int[] lengths = new int[strings.Length];
+            for (int i = 0; i < strings.Length; i++)
+            {
+                lengths[i] = strings[i].Length;
+            }
+            return lengths;
+        }
+
+
+
+        static void Pause()
+        {
+            Console.WriteLine("\nНажмите любую кнопку чтобы продолжить...");
+            Console.ReadKey();
+        }
+    }
 }
