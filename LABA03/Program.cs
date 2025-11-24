@@ -45,7 +45,7 @@ namespace CS_Basics
                 {
                     Block5();
                 }
-                else if (input == "9")
+                else if (input == "0")
                 {
                     exit = true;
                     Console.WriteLine("Закрывается...");
@@ -70,7 +70,7 @@ namespace CS_Basics
                 Console.WriteLine("2. ИМТ");
                 Console.WriteLine("4. Перевод времени");
                 Console.WriteLine("6. Цена со скидкой");
-                Console.WriteLine("9. Вернутся в меню");
+                Console.WriteLine("0. Вернутся в меню");
                 Console.Write("\nВыбери задачу: ");
 
                 string choice1 = Console.ReadLine();
@@ -112,7 +112,7 @@ namespace CS_Basics
                     Console.WriteLine($"Итоговая цена: {finalPrice:F2}");
                     Pause();
                 }
-                else if (choice1 == "9")
+                else if (choice1 == "0")
                 {
                     back = true;
                 }
@@ -185,7 +185,7 @@ namespace CS_Basics
                     else Console.WriteLine("Неправильный ввод.");
                     Pause();
                 }
-                else if (choice2 == "9")
+                else if (choice2 == "0")
                 {
                     back = true;
                 }
@@ -208,7 +208,7 @@ namespace CS_Basics
                 Console.WriteLine("2. Переворот числа");
                 Console.WriteLine("4. Максимальное нечетное");
                 Console.WriteLine("6. Арифметическая прогрессия ");
-                Console.WriteLine("9. Вернутся в меню");
+                Console.WriteLine("0. Вернутся в меню");
                 Console.Write("\nВыбери задачу: ");
 
                 string choice3 = Console.ReadLine();
@@ -266,7 +266,7 @@ namespace CS_Basics
                     Console.WriteLine($"\nСумма: {progressionSum}");
                     Pause();
                 }
-                else if (choice3 == "9")
+                else if (choice3 == "0")
                 {
                     back = true;
                 }
@@ -290,7 +290,7 @@ namespace CS_Basics
                 Console.WriteLine("2. Второй по велечине элемент");
                 Console.WriteLine("4. Четные элементы в столбцах");
                 Console.WriteLine("6. Диагонали матрица");
-                Console.WriteLine("9. Вернутся в меню");
+                Console.WriteLine("0. Вернутся в меню");
                 Console.Write("\nВыбери задачу: ");
                 string choice4 = Console.ReadLine();
                 if (choice4 == "2")
@@ -386,7 +386,7 @@ namespace CS_Basics
                     }
                     Pause();
                 }
-                else if (choice4 == "9")
+                else if (choice4 == "0")
                 {
                     back = true;
                 }
@@ -410,7 +410,7 @@ namespace CS_Basics
                 Console.WriteLine("4. Сумма цифр числа");
                 Console.WriteLine("6. Разделение числа");
                 Console.WriteLine("8. Длинны строк");
-                Console.WriteLine("9. Вернутся в меню");
+                Console.WriteLine("0. Вернутся в меню");
                 Console.Write("\nВыбери задачу: ");
 
                 string choice5 = Console.ReadLine();
@@ -439,7 +439,7 @@ namespace CS_Basics
                     Console.WriteLine("Длинна строк: " + string.Join(", ", lengths));
                     Pause();
                 }
-                else if (choice5 == "9")
+                else if (choice5 == "0")
                 {
                     back = true;
                 }

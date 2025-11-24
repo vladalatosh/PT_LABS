@@ -1,0 +1,15 @@
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/bin/Debug/net8.0/OOP_SAMPLE
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/bin/Debug/net8.0/OOP_SAMPLE.deps.json
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/bin/Debug/net8.0/OOP_SAMPLE.runtimeconfig.json
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/bin/Debug/net8.0/OOP_SAMPLE.dll
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/bin/Debug/net8.0/OOP_SAMPLE.pdb
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.GeneratedMSBuildEditorConfig.editorconfig
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.AssemblyInfoInputs.cache
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.AssemblyInfo.cs
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.csproj.CoreCompileInputs.cache
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.sourcelink.json
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.dll
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/refint/OOP_SAMPLE.dll
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.pdb
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/OOP_SAMPLE.genruntimeconfig.cache
+/home/halone/projects/PT_LABS/LABA04/OOP_SAMPLE/obj/Debug/net8.0/ref/OOP_SAMPLE.dll
