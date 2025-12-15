@@ -80,10 +80,21 @@ class Program
         AProgression ap1 = new AProgression(2, 3);
         ap1.PrintInfo();
         ap1.PrintFirstN(5);
+       
+        
+        
         Console.WriteLine(ap1.GetSum(5));
+        
+        
+        
         AProgression ap2 = new AProgression(10, -2);
         ap2.PrintInfo();
+        
+        
         ap2.PrintFirstN(6);
+
+
+
         Console.WriteLine(ap2.GetSum(6));
     }
 }
