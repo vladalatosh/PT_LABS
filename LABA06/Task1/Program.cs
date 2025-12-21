@@ -22,8 +22,31 @@ namespace Task1
             Console.WriteLine("--- Все животные в зоопарке ---");
             foreach (var animal in zoo)
             {
+                Console.WriteLine();
                 animal.ShowInfo();
                 animal.MakeSound();
+                animal.Eat();
+
+                if (animal is Bird bird)
+                {
+                    bird.Fly();
+                }
+                else if (animal is Fish fish)
+                {
+                    fish.Swim();
+                }
+                else if (animal is Mammal mammal)
+                {
+                    mammal.Run();
+                }
+                else if (animal is Reptile reptile)
+                {
+                    reptile.Crawl();
+                }
+                else if (animal is Insect insect)
+                {
+                    insect.Crawl();
+                }
             }
             Console.WriteLine();
             double totalPredatorAge = 0;

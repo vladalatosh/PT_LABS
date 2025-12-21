@@ -2,11 +2,11 @@ namespace Task1
 {
     public class Animal
     {
-        public string Species { get; set; }
-        public int Age { get; set; }
-        public double Weight { get; set; }
-        public string Habitat { get; set; }
-        public bool IsPredator { get; set; }
+        public string Species;
+        public int Age;
+        public double Weight;
+        public string Habitat;
+        public bool IsPredator;
 
         public Animal(string species, int age, double weight, string habitat, bool isPredator)
         {

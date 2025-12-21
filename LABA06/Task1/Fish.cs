@@ -14,5 +14,10 @@ namespace Task1
         {
             Console.WriteLine($"{Species} делает 'Буль-буль' (рыбы тихие).");
         }
+        public void Swim()
+        {
+            string waterType = IsSaltWater ? "соленой" : "пресной";
+            Console.WriteLine($"{Species} плывет в {waterType} воде.");
+        }
     }
 }

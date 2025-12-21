@@ -2,7 +2,7 @@ namespace Task1
 {
     public class Mammal : Animal
     {
-        public string FurColor { get; set; }
+        public string FurColor;
 
         public Mammal(string species, int age, double weight, string habitat, bool isPredator, string furColor)
             : base(species, age, weight, habitat, isPredator)

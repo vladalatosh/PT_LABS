@@ -3,7 +3,7 @@ namespace Task1
     // Птица
     public class Bird : Animal
     {
-        public double WingSpan { get; set; }
+        public double WingSpan;
 
         public Bird(string species, int age, double weight, string habitat, bool isPredator, double wingSpan)
             : base(species, age, weight, habitat, isPredator)
