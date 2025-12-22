@@ -56,14 +56,26 @@ namespace TASK1
 
         public static Fraction operator +(Fraction a, Fraction b)
         {
-            double sum = a.ToDouble() + b.ToDouble();
-            return FromDouble(sum);
+            int Whole = a.WholePart + b.WholePart;
+            int Fraction = a.FractionalPart + b.FractionalPart;
+            if(Fraction >= 1000)
+            {
+                Whole++;
+                whole -= 1000;
+            }
+            return Fraction(Whole, Fraction);
         }
 
         public static Fraction operator -(Fraction a, Fraction b)
         {
-            double diff = a.ToDouble() - b.ToDouble();
-            return FromDouble(diff);
+            int Whole = a.WholePart - b.WholePart;
+            int Fraction = a.FractionalPart - b.FractionalPart;
+            if(Fraction < 0)
+            {
+                Whole--;
+                Fraction += 1000;
+            }
+            return Fraction(Whole, Fraction);
         }
 
         public static Fraction operator *(Fraction a, Fraction b)
