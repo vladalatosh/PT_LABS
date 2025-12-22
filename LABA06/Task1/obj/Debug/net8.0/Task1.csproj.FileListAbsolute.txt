@@ -1,0 +1,15 @@
+/home/chill/projects/PT_LABS/LABA06/Task1/bin/Debug/net8.0/Task1
+/home/chill/projects/PT_LABS/LABA06/Task1/bin/Debug/net8.0/Task1.deps.json
+/home/chill/projects/PT_LABS/LABA06/Task1/bin/Debug/net8.0/Task1.runtimeconfig.json
+/home/chill/projects/PT_LABS/LABA06/Task1/bin/Debug/net8.0/Task1.dll
+/home/chill/projects/PT_LABS/LABA06/Task1/bin/Debug/net8.0/Task1.pdb
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.GeneratedMSBuildEditorConfig.editorconfig
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.AssemblyInfoInputs.cache
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.AssemblyInfo.cs
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.csproj.CoreCompileInputs.cache
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.sourcelink.json
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.dll
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/refint/Task1.dll
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.pdb
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/Task1.genruntimeconfig.cache
+/home/chill/projects/PT_LABS/LABA06/Task1/obj/Debug/net8.0/ref/Task1.dll
